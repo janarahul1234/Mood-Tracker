@@ -199,6 +199,7 @@ button {
 
 .mood-week__bar {
   width: 16px;
+  height: 4px;
   background-color: var(--gray-300);
   border-radius: 4px;
   margin-bottom: 8px;

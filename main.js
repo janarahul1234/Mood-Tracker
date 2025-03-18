@@ -6,11 +6,18 @@ const saveButton = moodTracker.querySelector("#save-button");
 const moodViews = moodViewer.querySelectorAll(".mood__view");
 const moodMonthContainer = document.querySelector(".mood-month__days");
 
-let selectedMood = null;
-const today = new Date().toISOString().split("T")[0];
 let moods = JSON.parse(localStorage.getItem("moods")) || [];
-const todayMood = moods.find((mood) => mood.date === today);
 let currentView = localStorage.getItem("currentView") || "day";
+
+const date = new Date();
+const year = date.getFullYear();
+const months = String(date.getMonth() + 1).padStart(2, 0);
+const days = String(date.getDate()).padStart(2, 0);
+
+const today = `${year}-${months}-${days}`;
+const todayMood = moods.find((mood) => mood.date === today);
+
+let selectedMood = null;
 
 if (todayMood) {
   switchToViewer();
@@ -60,8 +67,8 @@ moodViews.forEach((btn) => {
 moodViews.forEach((view) => {
   view.addEventListener("click", () => {
     moodViews.forEach((btn) => btn.classList.remove("mood__view--active"));
-
     view.classList.add("mood__view--active");
+
     currentView = view.textContent.toLowerCase();
     localStorage.setItem("currentView", currentView);
     displayMood(currentView);
@@ -170,6 +177,7 @@ function generateMonthCalendar() {
         dayEl.appendChild(moodEmoji);
       }
     }
+
     moodMonthContainer.appendChild(dayEl);
   }
 }
