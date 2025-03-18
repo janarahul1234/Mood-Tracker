@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ==================== REMIXICON ==================== -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
-
     <!-- ==================== CSS ==================== -->
     <link rel="stylesheet" href="./styles.css">
 
@@ -16,7 +13,158 @@
 </head>
 
 <body>
-    Hello Mood Tracker
+    <!-- <section class="mood__tracker">
+        <div class="mood__container">
+            <h2 class="mood__title">How are you feeling today?</h2>
+
+            <div class="mood__options">
+                <button class="mood__option">
+                    <span class="mood__option-emoji">😩</span>
+                    <span class="mood__option-text">Worst</span>
+                </button>
+
+                <button class="mood__option">
+                    <span class="mood__option-emoji">😒</span>
+                    <span class="mood__option-text">Bad</span>
+                </button>
+
+                <button class="mood__option">
+                    <span class="mood__option-emoji">😐</span>
+                    <span class="mood__option-text">Neutral</span>
+                </button>
+
+                <button class="mood__option mood__option--active">
+                    <span class="mood__option-emoji">😊</span>
+                    <span class="mood__option-text">Good</span>
+                </button>
+
+                <button class="mood__option">
+                    <span class="mood__option-emoji">😀</span>
+                    <span class="mood__option-text">Excited</span>
+                </button>
+            </div>
+
+            <div class="mood__current-date">March 17, 2025</div>
+            <button class="mood__save-button">Save</button>
+        </div>
+    </section> -->
+
+    <section class="mood__viewer">
+        <div class="mood__views">
+            <button class="mood__view mood__view--active">Day</button>
+            <button class="mood__view">Week</button>
+            <button class="mood__view">Month</button>
+        </div>
+
+        <div class="mood__container">
+            <div class="mood-day">
+                <div class="mood-day__emoji">😀</div>
+                <div class="mood-day__text">Today, you're feeling excited</div>
+                <div class="mood-day__current-date">March 17, 2025</div>
+            </div>
+
+            <!-- <div class="mood-week">
+                <div class="mood-week__columns">
+                    <div class="mood-week__comlumn">
+                        <div class="mood-week__emoji">😩</div>
+                        <div class="mood-week__bar mood-week__bar--worst"></div>
+                        <div class="mood-week__text">Mon</div>
+                    </div>
+
+                    <div class="mood-week__comlumn mood-week__comlumn--active">
+                        <div class="mood-week__emoji">😊</div>
+                        <div class="mood-week__bar mood-week__bar--good"></div>
+                        <div class="mood-week__text">Tue</div>
+                    </div>
+
+                    <div class="mood-week__comlumn">
+                        <div class="mood-week__emoji">😒</div>
+                        <div class="mood-week__bar mood-week__bar--bad"></div>
+                        <div class="mood-week__text">Wed</div>
+                    </div>
+
+                    <div class="mood-week__comlumn">
+                        <div class="mood-week__emoji">😊</div>
+                        <div class="mood-week__bar mood-week__bar--good"></div>
+                        <div class="mood-week__text">Thu</div>
+                    </div>
+
+                    <div class="mood-week__comlumn">
+                        <div class="mood-week__emoji">😀</div>
+                        <div class="mood-week__bar mood-week__bar--excited"></div>
+                        <div class="mood-week__text">Fri</div>
+                    </div>
+
+                    <div class="mood-week__comlumn">
+                        <div class="mood-week__emoji">😐</div>
+                        <div class="mood-week__bar mood-week__bar--neutral"></div>
+                        <div class="mood-week__text">Sat</div>
+                    </div>
+
+                    <div class="mood-week__comlumn">
+                        <div class="mood-week__emoji">😊</div>
+                        <div class="mood-week__bar mood-week__bar--good"></div>
+                        <div class="mood-week__text">Sun</div>
+                    </div>
+                </div>
+
+                <div class="mood-week__current-date">Today, March 18, 2025</div>
+            </div> -->
+
+            <!-- <div class="mood-month">
+                <div class="mood-month__current-date">March, 2025</div>
+
+                <div class="mood-month__calendar">
+                    <div class="mood-month__weeks">
+                        <div class="mood-month__week">Mon</div>
+                        <div class="mood-month__week">Tue</div>
+                        <div class="mood-month__week">Wed</div>
+                        <div class="mood-month__week">Thu</div>
+                        <div class="mood-month__week">Fri</div>
+                        <div class="mood-month__week">Sat</div>
+                        <div class="mood-month__week">Sun</div>
+                    </div>
+
+                    <div class="mood-month__days">
+                        <div class="mood-month__day"><span class="mood-month__day-text">1</div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">2</div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">3</div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">4</div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">5</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">6</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">7</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">8</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">9</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">10</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">11</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">12</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">13</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">14</span></div>
+                        <div class="mood-month__day mood-month__day--active">
+                            <span class="mood-month__day-text">15</span>
+                            <span class="mood-month__day-emoji">😊</span>
+                        </div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">16</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">17</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">18</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">19</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">20</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">21</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">22</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">23</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">24</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">25</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">26</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">27</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">28</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">29</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">30</span></div>
+                        <div class="mood-month__day"><span class="mood-month__day-text">31</span></div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
 
     <!-- ==================== MAIN JS ==================== -->
     <script src="./main.js"></script>
