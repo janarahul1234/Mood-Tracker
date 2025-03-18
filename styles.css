@@ -123,6 +123,10 @@ button {
 }
 
 /* ==================== MOOD VIEWER ==================== */
+.mood__viewer {
+  display: none;
+}
+
 .mood__views {
   position: fixed;
   top: 24px;
@@ -180,7 +184,7 @@ button {
   margin-bottom: 32px;
 }
 
-.mood-week__comlumn {
+.mood-week__column {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -231,11 +235,11 @@ button {
   height: 160px;
 }
 
-.mood-week__comlumn--active {
+.mood-week__column--active {
   color: var(--gray-950);
 }
 
-.mood-week__comlumn--active .mood-week__bar {
+.mood-week__column--active .mood-week__bar {
   background-color: var(--green-600);
 }
 
@@ -274,12 +278,9 @@ button {
   border-bottom: 1px solid var(--gray-300);
 }
 
-.mood-month__day-text {
-  margin-bottom: -4px;
-}
-
 .mood-month__day-emoji {
   font-size: 20px;
+  margin-top: -4px;
 }
 
 .mood-month__week:last-child,
@@ -297,6 +298,11 @@ button {
 .mood-month__day--active {
   color: var(--gray-950);
   border: 1.5px solid var(--green-600);
+}
+
+.mood-week,
+.mood-month {
+  display: none;
 }
 
 /* Desktop screen */
