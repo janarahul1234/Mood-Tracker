@@ -4,20 +4,13 @@ const moodOptions = moodTracker.querySelectorAll(".mood__option");
 const currentDateEl = moodTracker.querySelector("#current-date");
 const saveButton = moodTracker.querySelector("#save-button");
 const moodViews = moodViewer.querySelectorAll(".mood__view");
-const moodMonthContainer = document.querySelector(".mood-month__days");
+const moodMonthContainer = moodViewer.querySelector(".mood-month__days");
 
 let moods = JSON.parse(localStorage.getItem("moods")) || [];
 let currentView = localStorage.getItem("currentView") || "day";
-
-const date = new Date();
-const year = date.getFullYear();
-const months = String(date.getMonth() + 1).padStart(2, 0);
-const days = String(date.getDate()).padStart(2, 0);
-
-const today = `${year}-${months}-${days}`;
-const todayMood = moods.find((mood) => mood.date === today);
-
 let selectedMood = null;
+
+const todayMood = moods.find((mood) => mood.date === getToday());
 
 if (todayMood) {
   switchToViewer();
@@ -34,7 +27,7 @@ moodOptions.forEach((option) => {
     selectedMood = {
       emoji: option.querySelector(".mood__option-emoji").textContent,
       text: option.querySelector(".mood__option-text").textContent,
-      date: today,
+      date: getToday(),
     };
   });
 });
@@ -50,11 +43,6 @@ saveButton.addEventListener("click", () => {
   switchToViewer();
   displayMood(currentView);
 });
-
-function switchToViewer() {
-  moodTracker.style.display = "none";
-  moodViewer.style.display = "block";
-}
 
 moodViews.forEach((btn) => {
   if (btn.textContent.toLowerCase() === currentView) {
@@ -75,59 +63,57 @@ moodViews.forEach((view) => {
   });
 });
 
+function switchToViewer() {
+  moodTracker.style.display = "none";
+  moodViewer.style.display = "block";
+}
+
 function displayMood(view) {
   moods = JSON.parse(localStorage.getItem("moods")) || [];
-  const todayMood = moods.find((mood) => mood.date === today);
+  const todayMood = moods.find((mood) => mood.date === getToday());
 
-  ["day", "week", "month"].forEach((v) => {
-    moodViewer.querySelector(`.mood-${v}`).style.display = "none";
+  ["day", "week", "month"].forEach((view) => {
+    moodViewer.querySelector(`.mood-${view}`).style.display = "none";
   });
 
   if (view === "day") {
     if (todayMood) {
       moodViewer.querySelector(".mood-day").style.display = "block";
-      moodViewer.querySelector(".mood-day__emoji").textContent =
-        todayMood.emoji;
-      moodViewer.querySelector(
-        ".mood-day__text"
-      ).textContent = `Today, you're feeling ${todayMood.text.toLowerCase()}`;
-      moodViewer.querySelector(".mood-day__current-date").textContent =
-        getCurrentDate();
+      moodViewer.querySelector(".mood-day__emoji").textContent = todayMood.emoji;
+      moodViewer.querySelector(".mood-day__text").textContent = `Today, you're feeling ${todayMood.text.toLowerCase()}`;
+      moodViewer.querySelector(".mood-day__current-date").textContent = getCurrentDate();
     }
   } else if (view === "week") {
     moodViewer.querySelector(".mood-week").style.display = "block";
-    moodViewer.querySelector(
-      ".mood-week__current-date"
-    ).textContent = `Today, ${getCurrentDate()}`;
+    moodViewer.querySelector(".mood-week__current-date").textContent = `Today, ${getCurrentDate()}`;
 
     const startOfWeek = new Date();
-    startOfWeek.setDate(
-      startOfWeek.getDate() - ((startOfWeek.getDay() + 6) % 7)
-    );
+    startOfWeek.setDate(startOfWeek.getDate() - ((startOfWeek.getDay() + 7) % 7));
 
     moodViewer.querySelectorAll(".mood-week__column").forEach((col, index) => {
       const dayDate = new Date(startOfWeek);
       dayDate.setDate(dayDate.getDate() + index);
-      const { date, emoji, text } =
-        moods.find((m) => m.date === dayDate.toISOString().split("T")[0]) || {};
+      const { date, emoji, text } = moods.find((m) => m.date === dayDate.toISOString().split("T")[0]) || {};
 
-      col.classList.toggle("mood-week__column--active", date === today);
+      col.classList.toggle("mood-week__column--active", date === getToday());
       col.querySelector(".mood-week__emoji").textContent = emoji || "";
-      text
-        ? col
-            .querySelector(".mood-week__bar")
-            .classList.add(`mood-week__bar--${text.toLowerCase()}`)
-        : "";
+      text ? col.querySelector(".mood-week__bar").classList.add(`mood-week__bar--${text.toLowerCase()}`) : "";
     });
   } else if (view === "month") {
     moodViewer.querySelector(".mood-month").style.display = "block";
-    moodViewer.querySelector(
-      ".mood-month__current-date"
-    ).textContent = `${new Date().toLocaleDateString("en-US", {
-      month: "long",
-    })}, ${new Date().getFullYear()}`;
+    moodViewer.querySelector(".mood-month__current-date").textContent = `
+      ${new Date().toLocaleDateString("en-US", { month: "long" })}, ${new Date().getFullYear()}
+    `;
     generateMonthCalendar();
   }
+}
+
+function getToday() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const months = String(date.getMonth() + 1).padStart(2, 0);
+  const days = String(date.getDate()).padStart(2, 0);
+  return `${year}-${months}-${days}`;
 }
 
 function getCurrentDate() {
