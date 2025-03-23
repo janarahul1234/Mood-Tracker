@@ -27,7 +27,7 @@
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/mood-tracker.git
+   git clone https://github.com/janarahul1234/Mood-Tracker.git
    ```
 2. Open `index.html` in a browser.
 3. Start tracking your moods!
